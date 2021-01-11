@@ -115,7 +115,7 @@ class Recipes(models.Model):
             'image': self.image.url
         }
 
-
+# Table with messages for future app
 class Messages(models.Model):
     user = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name='messages_app')
     message = models.TextField(max_length=300)

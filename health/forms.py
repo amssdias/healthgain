@@ -18,8 +18,7 @@ class RegisterForm(forms.Form):
                                         attrs={'class': 'form__input', 'placeholder': 'weight'}))
 
 class ProfileForm(ModelForm):
-    # email           = forms.EmailField(label="Email", max_length=150, widget=forms.EmailInput(
-                                        # attrs={'class': 'form__input', 'placeholder': 'Email'}))
+    
     class Meta:
         model = Profile_user
         fields = '__all__'
