@@ -6,7 +6,8 @@ There's a section as well with recipes where they can search for a new one and t
 
 I decided to do this website as I like to workout and many people as well, we all have different goals, and the main problem to achieve is our diet. With this website it will be so much easier to track what we have been eating, if we exceeded and how far are we from our personal goals. I have added the recipes section so users once in a while can check for new types of foods to eat, and if not, the website is mainly simple so a user can simple track their nutrition values.
 
-I believe my website have the expectations as I have learned new skills in Django and in Javascript. I had to use Django signals, changed the admin page a little bit, used ModelForms, so whenever a user submits if will update automatically in the database. In Javascript I mainly used loads of APIs that I have builted with Django, and manipulated the data, send different requests and with that I could make the webpage much more user friendly.
+I believe my website have the expectations as I have learned new skills in Django and in Javascript. I had to use Django signals where everytime I create a user, a profile model for that user is created as well, changed the admin page a little bit, used ModelForms, so whenever a user submits if will update automatically in the database. I have done the password reset, but it's not functional as I didn't want to use a personal email. But I've tested with a real email.
+In Javascript I mainly used loads of APIs that I have builted with Django, and manipulated the data, send different requests and with that I could make the webpage much more user friendly.
 
 ## Getting Started
 
@@ -46,6 +47,7 @@ I believe my website have the expectations as I have learned new skills in Djang
  * Forms and ModelForm
  * Django signals
  * Flash Messages
+ * Password reset
  * APIs
  * Sass
  
