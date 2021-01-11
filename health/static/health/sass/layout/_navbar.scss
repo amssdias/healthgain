@@ -1,0 +1,99 @@
+.nav-bar {
+
+    height: 8rem;
+
+    @include flex(flex-end, center);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+    box-shadow: 0rem .3rem 1.2rem rgba(65, 47, 47, 0.4);
+
+    z-index: 1000;
+    padding: 2rem 5rem;
+
+
+    @include respond(tab-port) { // width < 900?
+        border-bottom: 2px solid orange;
+    }
+
+    
+
+
+    &__logo {
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        transform: translateY(-50%);
+
+        font-size: 3.5rem;
+        color: orange;
+        font-weight: 700;
+    }
+
+    &__links {
+
+        @include respond(tab-port) { // width < 900?
+            background-color: white;
+            position: absolute;
+            top: 103%;
+            right: 0;
+            left: 0;
+            
+            display: none;
+        }
+
+
+    }
+
+    &__icon {
+        display: none;
+        font-size: 4rem;
+        padding: 1rem;
+        color: orange;
+        border: 3px solid transparent;
+
+        &:active {
+            border: 3px solid orange;
+        }
+
+        @include respond(tab-port) { // width < 900?
+            display: block;
+        }
+    
+    }
+
+    &__link:link,
+    &__link:visited,
+    &__link {
+
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 400;
+        text-transform: capitalize;
+        text-decoration: none;
+        color: orange;
+        transition: 0.5s;
+
+        border-bottom: 2px solid transparent;
+
+        margin-left: 2.5rem;
+
+        &:hover {
+            color:#f7d794;
+            border-bottom: 2px solid #f7d794;
+        }
+    
+        @include respond(tab-port) { // width < 900?
+            display: block;
+            margin: .6rem 0rem;
+        }
+
+    }
+
+    
+
+
+}

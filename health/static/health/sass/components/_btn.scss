@@ -1,0 +1,104 @@
+.btn {
+    display: inline-block;
+    padding: 1rem 1.7rem;
+    border-radius: 40rem;
+    text-decoration: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.btn--submit {
+    height: 3.5rem;
+    font-weight: 999;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgb(239, 239, 239);
+        border: 1px solid rgba(255, 166, 0, 0.692);
+    }
+
+    &:focus {
+        outline: 2px solid rgba(255, 166, 0, 0.692);
+    }
+}
+
+.btn--warning {
+    height: 3.5rem;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    width: 10rem;
+    cursor: pointer;
+    background-color: #ff3f34;
+    color: white;
+
+    &:hover {
+        background-color: #ff5e57;
+        border: 1px solid rgba(255, 166, 0, 0.692);
+    }
+
+    &:focus {
+        outline: 2px solid rgba(255, 166, 0, 0.692);
+    }
+}
+
+
+.btn--grey {
+    margin: 0 auto;
+    border: 1px solid transparent;
+    font-size: 1.6rem;
+    color: black;
+
+    transition: .2s;
+
+    &:hover {
+        background-color: rgb(239, 239, 239);
+        border: 1px solid rgba(255, 166, 0, 0.692);
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+
+.btn--juicy {
+    background-image: $gradient-juicy-orange;
+
+    color: white;
+    font-size: 1.8rem;
+
+    transition: .2s;
+
+    &:hover {
+        transform: translateY(-.3rem);
+        box-shadow: .2rem .8rem 1rem rgba(0, 0, 0, 0.4);
+    }
+
+    &:active {
+        transform: translateY(-.1rem);
+        box-shadow: .2rem .4rem .6rem rgba(0, 0, 0, 0.4);
+    }
+}
+
+
+.btn--citrus {
+    background-image: $gradient-citrus-peel;
+
+    color: white;
+    font-size: 1.8rem;
+
+    transition: .2s;
+
+    &:hover {
+        transform: translateY(-.3rem);
+        box-shadow: .2rem .8rem 1rem rgba(0, 0, 0, 0.4);
+    }
+
+    &:active {
+        transform: translateY(-.1rem);
+        box-shadow: .2rem .4rem .6rem rgba(0, 0, 0, 0.4);
+    }
+}

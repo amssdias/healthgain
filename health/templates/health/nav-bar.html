@@ -1,0 +1,25 @@
+
+<nav class="nav-bar">
+    <a href="{% url 'health:main' %}">
+        <span class="nav-bar__logo">HealthGain</span>
+    </a>
+
+    <i class="fas fa-bars nav-bar__icon" id="nav-bar-button" ></i>
+    <div class="nav-bar__links" id="nav-bar-links">
+
+        {% if user.is_authenticated %}
+            <a href="#" class="nav-bar__link pop-up-link" data-popup="pop-up-profile">My Profile</a>
+            <a href="{% url 'health:dashboard' %}" class="nav-bar__link">Dashboard</a>
+            <a href="{% url 'health:food_list' %}" class="nav-bar__link">Food list</a>
+            <a href="{% url 'health:recipes' %}" class="nav-bar__link">Check our Recipes</a>
+            <a href="{% url 'health:logout' %}" class="nav-bar__link">Logout</a>
+        {% else %}
+            <a href="{% url 'health:recipes' %}" class="nav-bar__link">Check our Recipes</a>
+            <a href="{% url 'health:login' %}" class="nav-bar__link">Login</a>
+            <a href="{% url 'health:register' %}" class="nav-bar__link">Register</a>
+        {% endif %}
+
+
+
+    </div>
+</nav>

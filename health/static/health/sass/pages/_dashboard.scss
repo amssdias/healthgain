@@ -1,0 +1,106 @@
+.dashboard {
+    @include sections(7rem 30rem, white);
+
+    @include sections-media( #white);
+
+    &__today {
+
+        border-top: 1px solid rgba(0, 0, 0, 0.2);
+        padding-top: 4rem;
+
+        &__status {
+
+            padding: 5rem 15rem;
+            position: relative;
+
+            @include respond(phone) { // width < 600?
+                padding: 5rem;
+            }
+
+            & > a {
+                font-size: 5rem;
+            }
+
+            &__name {
+                margin-bottom: 2rem;
+
+                font-size: 2rem;
+
+                @include flex(space-between, center);
+
+                &:first-child {
+
+                    &:before {
+                        content:"";
+                        display: inline-block;
+                        height: .1rem;
+                        width: 90%;
+
+                        position: absolute;
+                        top: 0;
+                        left: 5%;
+
+                        background-color: black;
+                        
+                    }
+
+                    &:after {
+                        content:"";
+                        display: inline-block;
+                        height: .1rem;
+                        width: 90%;
+
+                        position: absolute;
+                        bottom: 0;
+                        left: 5%;
+
+                        background-color: black;
+                        
+                    }
+                }
+
+                &:nth-child(5) {
+
+                    &:before {
+                        content:"";
+                        display: inline-block;
+                        width: .1rem;
+                        height: 80%;
+
+                        position: absolute;
+                        top: 10%;
+                        left: 0;
+
+                        background-color: black;
+                        
+                    }
+
+                    &:after {
+                        content:"";
+                        display: inline-block;
+                        width: .1rem;
+                        height: 80%;
+
+                        position: absolute;
+                        top: 10%;
+                        right: 0;
+
+                        background-color: black;
+                        
+                    }
+                }
+
+            }
+        }
+    }
+
+    &__search {
+        padding: 4rem 0rem;
+        @include flex(center,center);
+        flex-direction: column;
+
+        &__list {
+            width: 100%;
+        }
+    }
+}

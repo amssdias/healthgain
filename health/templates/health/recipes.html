@@ -1,0 +1,174 @@
+{% extends 'health/layout.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    {% include 'health/nav-bar.html' %}
+
+    <header class="header--recipes">
+        <div class="header__title">
+            Try out our special recipes!
+        </div>
+
+    </header>
+    
+    {% include 'health/pop-up-profile.html' %}
+    
+
+    <main class="recipes">
+
+        <h2 class="heading-secondary margin-top-large">Check our latest recipes</h2>
+
+        {% if user.is_authenticated %}
+            <!-- Cards -->
+            <div class="recipes__cards" id="checked">
+
+                <div class="recipes__cards__card cards-button" data-category="bulk">
+
+                    <span class="recipes__cards__card__text">Bulk</span>
+                    
+                </div>
+
+                <div class="recipes__cards__card cards-button" data-category="reduce weight">
+
+                    <span class="recipes__cards__card__text">Lose Weight</span>
+                    
+                </div>
+        
+                <div class="recipes__cards__card cards-button" data-category="healthy dessert">
+        
+                    <span class="recipes__cards__card__text">Healthy dessert</span>
+                    
+                </div>
+                
+            </div>
+
+            <div class="search-bar--box margin-bottom-large">
+                <form action="{% url 'health:recipes' %}" class="search-bar" method="POST">
+                    {% csrf_token %}
+                    <input name="search" type="text" class="search-bar__input" placeholder="Search for a recipe">
+                    <button type="submit" class="search-bar__button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Recipes List-->
+            <div class="recipes__list ">
+
+                {% if recipes %}
+
+                    {% for recipe in recipes %}
+
+                        <div class="recipes__list__item">
+
+                            <img src="{{ recipe.image.url }}" alt="{{ recipe.name }}" class="recipes__list__item__img">
+            
+                            <div class="recipes__list__item__info">
+                                <h3 class="heading-tertiary">{{ recipe.name }}</h3>
+                                <p class="paragraph margin-top-medium">{{ recipe.summary }}</p>
+                                <a href="{{ recipe.url_field }}" class="btn btn--citrus margin-top-medium">Check full recipe here</a>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                {% endif %}
+
+                <!-- 
+                <div class="recipes__list__paginator">
+
+                    <button class="recipes__list__paginator__arrow"><i class="fas fa-arrow-circle-left"></i></button>
+
+                    <button class="recipes__list__paginator__arrow"><i class="fas fa-arrow-circle-right"></i></button>
+
+                </div> -->
+
+            </div>
+        {% else %}
+        
+            <div class="recipes__cards">
+
+                <div class="recipes__cards__card recipes-button" id="bulk-recipe">
+
+                    <span class="recipes__cards__card__text">Bulk</span>
+                    
+                </div>
+
+                <div class="recipes__cards__card recipes-button" id="reduce-weight-recipe">
+
+                    <span class="recipes__cards__card__text">Lose Weight</span>
+                    
+                </div>
+        
+                <div class="recipes__cards__card recipes-button" id="healthy-dessert-recipe">
+        
+                    <span class="recipes__cards__card__text">Healthy dessert</span>
+                    
+                </div>
+                
+            </div>
+
+            <div class="recipes__recipe--info" data-recipe="bulk-recipe">
+
+                <h3 class="heading-tertiary margin-medium-large">Bulk</h3>
+                <p class="paragraph margin-top-medium">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto impedit minima a consectetur soluta totam numquam fugiat. Quo voluptatum reiciendis nisi natus, eveniet in asperiores distinctio dolore rerum a sequi.
+                    Aliquam placeat iusto similique, amet impedit ex! Facere dicta voluptatibus, praesentium rem quisquam sapiente consequatur tempora reiciendis expedita eos minima non deleniti, ex harum! Quaerat mollitia ea earum non itaque.
+                    Laborum, facere ipsum illum nam eveniet vero architecto sed adipisci saepe consequuntur eum quis aspernatur error incidunt porro obcaecati cum, et assumenda voluptas impedit, explicabo recusandae ducimus vitae corrupti! Consectetur.
+                    Illo asperiores ipsa rem voluptates a eius fugiat sed illum, corrupti quibusdam ab perspiciatis. Aut minus minima illum amet, adipisci voluptas cum iure fugit quis ipsum dolor quaerat recusandae aliquam!
+                    Exercitationem quod fuga, deserunt obcaecati corporis sunt. Perferendis repellendus quo libero inventore necessitatibus 
+                    Nobis officiis nihil porro, architecto expedita modi a. Iste, excepturi architecto? Hic, harum laboriosam consequatur laudantium vitae tempore sapiente fugit voluptatibus eum, quae consectetur amet eos illo, accusamus ab excepturi?
+                    Repellendus neque dolores maxime recusandae, molestiae ipsam ea, unde, voluptas a aspernatur explicabo? Nisi voluptates pariatur 
+                    Totam animi laboriosam ipsam voluptatum harum dolorem nihil. Accusantium voluptatum, possimus aspernatur quia sint assumenda eligendi aliquid id magnam fuga fugiat ducimus soluta eum tempora minima delectus aut? Repellendus, quae.
+
+                
+                    Nam, iste nobis mollitia quia facilis, molestiae veniam perspiciatis suscipit assumenda totam eos enim perferendis aut delectus, vel a voluptates maxime. Quod incidunt porro repudiandae nostrum iusto quam voluptatem obcaecati?
+                </p>
+            </div>
+
+            <div class="recipes__recipe--info" data-recipe="reduce-weight-recipe">
+
+                <h3 class="heading-tertiary margin-medium-large">Reduce Weight</h3>
+                <p class="paragraph margin-top-medium">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto impedit minima a consectetur soluta totam numquam fugiat. Quo voluptatum reiciendis nisi natus, eveniet in asperiores distinctio dolore rerum a sequi.
+                    Aliquam placeat iusto similique, amet impedit ex! Facere dicta voluptatibus, praesentium rem quisquam sapiente consequatur tempora reiciendis expedita eos minima non deleniti, ex harum! Quaerat mollitia ea earum non itaque.
+                    Laborum, facere ipsum illum nam eveniet vero architecto sed adipisci saepe consequuntur eum quis aspernatur error incidunt porro obcaecati cum, et assumenda voluptas impedit, explicabo recusandae ducimus vitae corrupti! Consectetur.
+                    Illo asperiores ipsa rem voluptates a eius fugiat sed illum, corrupti quibusdam ab perspiciatis. Aut minus minima illum amet, adipisci voluptas cum iure fugit quis ipsum dolor quaerat recusandae aliquam!
+                    Exercitationem quod fuga, deserunt obcaecati corporis sunt. Perferendis repellendus quo libero inventore necessitatibus 
+                    Nobis officiis nihil porro, architecto expedita modi a. Iste, excepturi architecto? Hic, harum laboriosam consequatur laudantium vitae tempore sapiente fugit voluptatibus eum, quae consectetur amet eos illo, accusamus ab excepturi?
+                    Repellendus neque dolores maxime recusandae, molestiae ipsam ea, unde, voluptas a aspernatur explicabo? Nisi voluptates pariatur 
+                    Totam animi laboriosam ipsam voluptatum harum dolorem nihil. Accusantium voluptatum, possimus aspernatur quia sint assumenda eligendi aliquid id magnam fuga fugiat ducimus soluta eum tempora minima delectus aut? Repellendus, quae.
+
+                
+                    Nam, iste nobis mollitia quia facilis, molestiae veniam perspiciatis suscipit assumenda totam eos enim perferendis aut delectus, vel a voluptates maxime. Quod incidunt porro repudiandae nostrum iusto quam voluptatem obcaecati?
+                </p>
+            </div>
+
+            <div class="recipes__recipe--info" data-recipe="healthy-dessert-recipe">
+
+                <h3 class="heading-tertiary margin-medium-large">Healthy Dessert</h3>
+                <p class="paragraph margin-top-medium">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto impedit minima a consectetur soluta totam numquam fugiat. Quo voluptatum reiciendis nisi natus, eveniet in asperiores distinctio dolore rerum a sequi.
+                    Aliquam placeat iusto similique, amet impedit ex! Facere dicta voluptatibus, praesentium rem quisquam sapiente consequatur tempora reiciendis expedita eos minima non deleniti, ex harum! Quaerat mollitia ea earum non itaque.
+                    Laborum, facere ipsum illum nam eveniet vero architecto sed adipisci saepe consequuntur eum quis aspernatur error incidunt porro obcaecati cum, et assumenda voluptas impedit, explicabo recusandae ducimus vitae corrupti! Consectetur.
+                    Illo asperiores ipsa rem voluptates a eius fugiat sed illum, corrupti quibusdam ab perspiciatis. Aut minus minima illum amet, adipisci voluptas cum iure fugit quis ipsum dolor quaerat recusandae aliquam!
+                    Exercitationem quod fuga, deserunt obcaecati corporis sunt. Perferendis repellendus quo libero inventore necessitatibus 
+                    Nobis officiis nihil porro, architecto expedita modi a. Iste, excepturi architecto? Hic, harum laboriosam consequatur laudantium vitae tempore sapiente fugit voluptatibus eum, quae consectetur amet eos illo, accusamus ab excepturi?
+                    Repellendus neque dolores maxime recusandae, molestiae ipsam ea, unde, voluptas a aspernatur explicabo? Nisi voluptates pariatur 
+                    Totam animi laboriosam ipsam voluptatum harum dolorem nihil. Accusantium voluptatum, possimus aspernatur quia sint assumenda eligendi aliquid id magnam fuga fugiat ducimus soluta eum tempora minima delectus aut? Repellendus, quae.
+
+                
+                    Nam, iste nobis mollitia quia facilis, molestiae veniam perspiciatis suscipit assumenda totam eos enim perferendis aut delectus, vel a voluptates maxime. Quod incidunt porro repudiandae nostrum iusto quam voluptatem obcaecati?
+                </p>
+            </div>
+
+        <a href="{% url 'health:login' %}" class="btn btn--juicy margin-bottom-large">Login to see more</a>
+        {% endif %}
+        
+    </main>
+
+    {% include 'health/footer.html' %}
+
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'health/layout.html' %}
+
+{% load static %}
+
+{% block content %}
+    <div class="form-box">
+
+        <h1 class="heading-primary">Register</h1>
+
+        <form action="{% url 'health:register' %}" method="POST" class="form">
+
+            {% csrf_token %}
+
+            {% for input in form %}
+                {{ input }}
+            {% endfor %}
+    
+            <input type="submit" class="btn--submit" value="Register"> 
+
+        </form>
+
+        {% if message %}
+            <p class="paragraph">{{ message }}</p>
+        {% endif %}
+
+        <div class="form-box__info">
+            <span>Already a member? <a href="{% url 'health:login' %}" class="form-box__info__link">Log in</a></span>
+            <a href="{% url 'health:main' %}" class="form-box__info__link">Go Back</a>
+        </div>
+
+    </div>
+
+    <footer class="footer-small">
+        <h3 class="heading-tertiary footer__title">Connect with us</h3>
+
+        <div class="footer-small__connect">
+            <a href="#" class="footer-small__connect--logo"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="footer-small__connect--logo"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="footer-small__connect--logo"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="footer-small__connect--logo"><i class="fab fa-youtube"></i></a>
+            
+        </div>
+
+        <p class="footer-small__text">Copyright © by André Dias.</p>
+        
+    </footer>
+
+{% endblock %}

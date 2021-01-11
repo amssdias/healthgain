@@ -1,0 +1,154 @@
+.pop-up {
+    width: 50%;
+    padding-bottom: 2rem;
+    border-radius: 2rem;
+    box-shadow: .2rem .8rem 2.5rem rgba(0, 0, 0, 0.4);
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+
+    // display: none;
+
+    // z-index: 1000;
+
+    @include respond(tab-land) { // width < 1200?
+        width: 65%;
+    }
+
+    @include respond(tab-port) { // width < 900?
+        width: 75%;
+    }
+
+    @include respond(phone) { // width < 600?
+        width: 85%;
+    }
+
+    &__box {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+    }
+
+    &__header {
+        background-image: $gradient-mango;
+        padding: 2rem;
+        color: white;
+        border-top-right-radius: 2rem;
+        border-top-left-radius: 2rem;
+
+        &--close {
+            display: inline-block;
+            background-color: white;
+            color: black;
+            padding: 1.2rem;
+            border-radius: 50%;
+
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+
+            &::before,
+            &::after {
+                content: "";
+                display: inline-block;
+                height: .1rem;
+                width: 1rem;
+                background-color: black;
+                position: absolute;
+                left: 50%;
+                transform-origin: center;
+            }
+
+            &::before { transform: translateX(-50%) rotate(45deg);}
+            &::after {transform: translateX(-50%) rotate(-45deg);}
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+
+    
+
+    &__form {
+        @include flex(center, center);
+        flex-direction: column;
+        
+        padding: 2.5rem;
+
+        &__info {
+            border-bottom: 1px solid black;
+            //padding-bottom: .3rem;
+            width: 90%;
+            margin-bottom: 1.2rem;
+
+            @include flex(space-between, center);
+        }
+
+        &__label {
+            font-size: 1.8rem;
+        }
+
+        &__select {
+            font-size: 1.6rem;
+            width: 90%;
+            padding: 1rem;
+
+            background: transparent;
+
+            &:focus {
+                border:1px solid rgba(255, 166, 0, 0.692);
+                outline: none;
+            }
+
+        }
+
+        &__input {
+            width: 60%;
+            padding: 1rem;
+            border: none;
+            outline: 1px solid black;
+
+            @include respond(phone) { // width < 600?
+                width: 85%; 
+            }
+
+            &:focus {
+                outline: 1px solid rgba(255, 166, 0, 0.692);
+                border: none;
+            }
+        }
+
+        & > .btn--submit {
+            width: 10rem;
+        }
+
+    }
+
+    &__display-stats {
+        width: 100%;
+        @include flex(center, center);
+        flex-direction: column;
+    }
+
+    &__title {
+        font-size: 2.4rem;
+    }
+
+    &__stats {
+        font-size: 1.8rem;
+    }
+
+    &__update {
+
+        @include flex(space-around, center);
+    }
+}

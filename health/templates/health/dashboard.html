@@ -1,0 +1,178 @@
+{% extends 'health/layout.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    {% include 'health/nav-bar.html' %}
+
+    <header class="header--dashboard">
+        <div class="header__title">
+            Check your progress
+        </div>
+
+        
+    </header>
+    {% include 'health/pop-up-profile.html' %}
+
+    <div class="pop-up__box" id="pop-up-add-food">
+        <div class="pop-up">
+
+            <div class="pop-up__header">
+                <h2 class="heading-secondary">Add food</h2>
+                <span class="pop-up__header--close pop-up-close" data-popup="pop-up-add-food"></span>
+            </div>
+    
+            <form action="{% url 'health:dashboard' %}" method="POST" class="pop-up__form">
+                {% csrf_token %}
+    
+                <h2 class="heading-secondary margin-bottom-medium">What did you eat today?</h2>
+    
+                <label for="food" class="pop-up__form__label margin-bottom-small">Choose from your list of foods:</label>
+                <select name="food" id="food" class="pop-up__form__select margin-bottom-small">
+                    <option value="" disabled selected hidden></option>
+                    {% for food in profile.favourite_foods.all %}
+                        <option value="{{ food.id }}">{{ food }}</option>
+                    {% endfor %}
+                </select>
+    
+                <input type="number" class="pop-up__form__input margin-bottom-small" name="weight" min="0" max="5000" placeholder="How much did you eat? (grams/ml)">
+                
+                <input type="submit" class="btn--submit" value="Add" name="add-food">
+    
+            </form>
+    
+            <p class="paragraph">Dont't find your food? Create or add to your list <a href="food-list.html" class="form-box__info__link">here!</a></p>
+            
+    
+        </div>
+    </div>
+
+    <main class="dashboard">
+
+        <p class="paragraph">Check your progress, and update it everyday so you can keep track of your nutrition.</p>
+        <p class="paragraph">Don't give up!</p>
+        {% for food in date_query %}
+            <p>{{ food.food.name }}</p>
+        {% endfor %}
+        
+        <div class="dashboard__today margin-top-large">
+
+            <h2 class="heading-secondary">Today you already got:</h2>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="flash-message margin-top-large">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+
+            <div class="dashboard__today__status margin-top-large">
+                <p class="dashboard__today__status__name">Calories: <span style="color: black;">{{ today_food.calories }}</span></p>
+                <p class="dashboard__today__status__name">Total fat: <span>{{ today_food.total_fat }}</span></p>
+                <p class="dashboard__today__status__name">Carbohydrate: <span>{{ today_food.carbs }}</span></p>
+                <p class="dashboard__today__status__name">Fiber: <span>{{ today_food.fiber }}</span></p>
+                <p class="dashboard__today__status__name">Protein: <span>{{ today_food.protein }}</span></p>
+                
+                <p class="paragraph margin-top-medium">{{ today_food.date }}</p>
+            </div>
+
+            <a  class="btn btn--juicy margin-top-medium margin-bottom-medium pop-up-link" data-popup="pop-up-add-food">Add food</a>
+
+        </div>
+
+        <div class="dashboard__search">
+            <form action="{% url 'health:dashboard' %}" method="POST" class="form form--search-day margin-bottom-medium">
+                {% csrf_token %}
+                <h2 class="heading-secondary margin-bottom-medium">Look up a certain day</h2>
+
+                <label for="datepicked" class="form__label">Choose date:</label>
+                <input type="date" name="date" id="datepicked" class="form__date margin-bottom-small">
+                <input type="submit" class="btn btn--grey" value="Submit" name="date_query">
+            </form>
+
+            <div class="dashboard__search__list">
+
+                {% if date_query %}
+
+                    <div class="dashbooard__search__list__foods margin-bottom-large">
+
+                        <h2 class="heading-secondary margin-bottom-medium">What I ate</h2>
+
+                        <ul class="bullet-list">
+                            {% for food in date_query %}
+                                <li class="bullet-list__item pop-up-link" data-popup="pop-up-update-food" data-foodName="{{ food.food.name }}" data-foodweight="{{ food.weight }}" data-foodid="{{ food.id }}">{{ food.food.name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <!-- Pop up Update food -->
+                    <div class="pop-up__box" id="pop-up-update-food">
+                        <div class="pop-up">
+
+                            <div class="pop-up__header">
+                                <h2 class="heading-secondary">Update food</h2>
+                                <span class="pop-up__header--close pop-up-close" data-popup="pop-up-update-food"></span>
+                            </div>
+                    
+                            <form action="{% url 'health:dashboard' %}" method="POST" class="pop-up__form">
+                                {% csrf_token %}
+                                <input type="hidden" name="food-id">
+                    
+                                <h3 class="heading-tertiary"></h3>
+                    
+                                <input type="number" name="new_weight" class="pop-up__form__input margin-bottom-small" min="0" max="5000" placeholder="How much did you eat? (grams/ml)">
+                                
+                                <input type="submit" class="btn--submit" value="Update" name="update_food">
+                    
+                            </form>
+                            
+                    
+                        </div>
+                    </div>
+                    
+
+                    <table class="table--intake">
+                    <tr class="table--intake__row">
+                        <th colspan="2" class="table--intake__row__header">{{ date_food.date  }}</th>
+                    </tr>
+
+                    <tr class="table--intake__row">
+                        <td class="table--intake__row__title">Calories</td>
+                        <td class="table--intake__row__data">{{ date_food.calories | floatformat }}</td>
+                    </tr>
+
+                    <tr class="table--intake__row">
+                        <td class="table--intake__row__title">Total Fat</td>
+                        <td class="table--intake__row__data">{{ date_food.total_fat | floatformat }}</td>
+                    </tr>
+
+                    <tr class="table--intake__row">
+                        <td class="table--intake__row__title">Carbohydrate</td>
+                        <td class="table--intake__row__data">{{ date_food.carbs | floatformat }}</td>
+                    </tr>
+
+                    <tr class="table--intake__row">
+                        <td class="table--intake__row__title">Fiber</td>
+                        <td class="table--intake__row__data">{{ date_food.fiber | floatformat }}</td>
+                    </tr>
+
+                    <tr class="table--intake__row">
+                        <td class="table--intake__row__title">Protein</td>
+                        <td class="table--intake__row__data">{{ date_food.protein | floatformat }}</td>
+                    </tr>
+
+                    </table>
+
+                {% endif %}
+
+            </div>
+
+            
+        </div>
+        
+        
+    </main>
+
+    {% include 'health/footer.html' %}
+
+{% endblock %}

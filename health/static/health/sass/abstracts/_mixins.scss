@@ -1,0 +1,99 @@
+@mixin flex($justify, $align) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin header {
+    height: 98vh;
+    position: relative;
+
+    background-size: cover;
+    // background-position: center;
+}
+
+
+@mixin sections($padding, $bg-color) {
+    padding: $padding;
+    background-color: $bg-color;
+}
+
+@mixin footer {
+    background-color: #4f4e53;
+    color: white;
+}
+
+@mixin footer-connect {
+    padding: 3rem 0;
+    text-align: center;
+
+    @include flex(center, center);
+}
+
+@mixin footer-connect-logo {
+    text-decoration: none;
+    color: white;
+    border: 3px solid white;
+    border-radius: 100%;
+    
+    @include flex(center, center);
+}
+
+@mixin footer-text {
+    font-size: 1.8rem;
+    text-align: center;
+    padding: 3rem;
+}
+
+
+
+
+// MEDIA QUERY MANAGER
+/*
+0 - 600px:      Phone
+600 - 900px:    Tablet portrait
+900 - 1200px:   Tablet landscape
+[1200 - 1800] is where our normal styles apply
+1800px + :      Big desktop
+
+$breakpoint arguement choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+1em = 16px
+*/
+
+@mixin phone {
+    @media (min-width:112.5em) { @content };
+}
+
+@mixin respond($breakpoint) {
+    @if $breakpoint == phone {
+        @media only screen and (max-width: 37.5em) { @content };    //600px
+    }
+    @if $breakpoint == tab-port {
+        @media only screen and (max-width: 56.25em) { @content };     //900px
+    }
+    @if $breakpoint == tab-land {
+        @media only screen and (max-width: 75em) { @content };    //1200px
+    }
+    @if $breakpoint == big-desktop {
+        @media only screen and (min-width: 112.5em) { @content };    //1800
+    }
+}
+
+@mixin sections-media($bg-color) {
+    @include respond(tab-land) { // width < 1200?
+        @include sections(7rem 15rem, $bg-color);
+    }
+
+    @include respond(tab-port) { // width < 900?
+        @include sections(7rem 6rem, $bg-color);
+    }
+
+    @include respond(phone) { // width < 600?
+        @include sections(7rem 4rem, $bg-color); 
+    }
+}

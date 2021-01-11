@@ -1,0 +1,169 @@
+{% extends 'health/layout.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    {% include 'health/nav-bar.html' %}
+
+    <header class="header">
+
+        {% if user.is_authenticated %}
+
+            <div class="header__user-info">
+                <p class="header__user-info__text">Missing:</p>
+                <span class="header__user-info__number" id="missing-weight" data-userid="{{ request.user.profile.id }}"></span>
+                <p class="header__user-info__text">Goal: {{ request.user.profile.weight_goal }} Kg</p>
+            </div>
+
+            {% include 'health/pop-up-profile.html' %}
+        
+        {% else %}
+
+            <h1 class="header__slogan">
+                Food is the ingredient that bind us together
+            </h1>
+            <a href="{% url 'health:recipes' %}" class="header__link-recipes">Check our recipes!</a>
+
+        {% endif %}
+
+    </header>
+
+    <main class="main">
+
+        {% if user.is_authenticated %}
+
+            <!-- What user took previous day, and today -->
+            <section class="section-intake">
+                <h2 class="heading-secondary margin-bottom-large">Never forget about your previous day</h2>
+
+                <table class="table--intake">
+                    <tr class="table--intake__row">
+                        <th class="table--intake__row__header"></th>
+                        <th class="table--intake__row__header">{{ yesterday_food.date }}</th>
+                        <th class="table--intake__row__header">{{ today_food.date }}</th>
+                    </tr>
+
+                    <tr class="table--intake__row">
+                        <td class="table--intake__row__title">Calories</td>
+                        <td class="table--intake__row__data">{{ yesterday_food.calories | floatformat }}</td>
+                        <td class="table--intake__row__data">{{ today_food.calories | floatformat }}</td>
+                    </tr>
+
+                    <tr class="table--intake__row">
+                        <td class="table--intake__row__title">Total Fat</td>
+                        <td class="table--intake__row__data">{{ yesterday_food.total_fat | floatformat }}</td>
+                        <td class="table--intake__row__data">{{ today_food.total_fat | floatformat }}</td>
+                    </tr>
+
+                    <tr class="table--intake__row">
+                        <td class="table--intake__row__title">Carbohydrate</td>
+                        <td class="table--intake__row__data">{{ yesterday_food.carbs | floatformat }}</td>
+                        <td class="table--intake__row__data">{{ today_food.carbs | floatformat }}</td>
+                    </tr>
+
+                    <tr class="table--intake__row">
+                        <td class="table--intake__row__title">Fiber</td>
+                        <td class="table--intake__row__data">{{ yesterday_food.fiber | floatformat }}</td>
+                        <td class="table--intake__row__data">{{ today_food.fiber | floatformat }}</td>
+                    </tr>
+
+                    <tr class="table--intake__row">
+                        <td class="table--intake__row__title">Protein</td>
+                        <td class="table--intake__row__data">{{ yesterday_food.protein | floatformat }}</td>
+                        <td class="table--intake__row__data">{{ today_food.protein | floatformat }}</td>
+                    </tr>
+
+                </table>
+
+                <a href="{% url 'health:dashboard' %}" class="btn btn--juicy margin-top-medium">Add food</a>
+            </section>
+
+            <!-- User suggest something for app -->
+            <section class="section-app">
+                <h2 class="heading-secondary margin-bottom-small">Mobile Apps</h2>
+                <p class="paragraph margin-bottom-medium">We are currently developing our mobile app. Let us what features you would like to see in the app!</p>
+                
+                <div class="section-app__form">
+                    <i class="fas fa-mobile-alt section-app__form__icon"></i>
+
+                    <form class="form form--smaller" action="#" id="app-message">
+                        {% csrf_token %}
+                        <textarea class="form__textarea textarea-app" maxlength="300" name="" id="app-message-text-{{ request.user.id }}" cols="30" rows="5"></textarea>
+                        <span class="form__max-carach">Max <span id="max-carach">300</span> characters.</span>
+                        <input class="btn btn--grey margin-top-medium" type="submit" value="Send">
+                    </form>
+
+                    <i class="fas fa-cogs section-app__form__icon"></i>
+                </div>
+
+            </section>
+        
+        {% else %}
+
+            <section class="section-features">
+                <h2 class="heading-secondary margin-bottom-small">Features</h2>
+                <p class="paragraph">Calorie reduced diets require a lot of information to perform optimally. In order to restrict caloric intake, but remain healthy, users of the diet must track their vitamin, mineral, and protein intakes with great care.</p>
+                <p class="paragraph margin-bottom-large">We aim to provide a complete solution for the smart dieter.</p>
+
+
+                <div class="features-cards">
+
+                    <div class="features-cards__card">
+                        <img src="{% static 'health/images/cronometer-icon-1.png' %}" class="features-cards__card__image" alt="" class="imagen">
+                        <p class="features-cards__card__text">Easy to use, streamlined data entry</p>
+                    </div>
+
+                    <div class="features-cards__card">
+                        <img src="{% static 'health/images/cronometer-icon-2.png' %}" class="features-cards__card__image" alt="" class="imagen">
+                        <p class="features-cards__card__text">Track up to 300,000+ foods</p>
+                    </div>
+
+                    <div class="features-cards__card">
+                        <img src="{% static 'health/images/cronometer-icon-3.png' %}" class="features-cards__card__image" alt="" class="imagen">
+                        <p class="features-cards__card__text">Log your diet, exercise, biometrics and notes</p>
+                    </div>
+
+                    <div class="features-cards__card">
+                        <img src="{% static 'health/images/cronometer-icon-4.png' %}" class="features-cards__card__image" alt="" class="imagen">
+                        <p class="features-cards__card__text">Log your diet, exercise, biometrics and notes</p>
+                    </div>
+
+                    <div class="features-cards__card">
+                        <img src="{% static 'health/images/cronometer-icon-5.png' %}" class="features-cards__card__image" alt="" class="imagen">
+                        <p class="features-cards__card__text">Log your diet, exercise, biometrics and notes</p>
+                    </div>
+
+                    <div class="features-cards__card">
+                        <img src="{% static 'health/images/cronometer-icon-6.png' %}" class="features-cards__card__image" alt="" class="imagen">
+                        <p class="features-cards__card__text">Log your diet, exercise, biometrics and notes</p>
+                    </div>
+                    
+                </div>
+
+
+            </section>
+
+            <section class="section-app">
+
+                <h2 class="heading-secondary margin-bottom-small">Mobile Apps</h2>
+                <p class="paragraph margin-bottom-medium">We are currently developing our mobile app. Let us what features you would like to see in the app!</p>
+                
+                <div class="section-app__form">
+                    <i class="fas fa-mobile-alt section-app__form__icon"></i>
+                    <div class="section-app__form__text">
+                        <a href="{% url 'health:login' %}">Sign in</a>
+                        <h3 class="heading-tertiary">And tell us what features you would like to have on the app</h3>
+                    </div>
+                    <i class="fas fa-cogs section-app__form__icon"></i>
+                </div>
+
+            </section>
+
+        {% endif %}
+
+    </main>
+
+    {% include 'health/footer.html' %}
+    
+{% endblock %}

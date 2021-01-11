@@ -1,0 +1,107 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+
+    &-box {
+        border: 1px solid rgba(128, 128, 128, 0.493);
+        width: 45%;
+        margin: 4rem auto;
+        padding: 3rem;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @include respond(tab-land) { // width < 1200?
+            width: 50%; 
+        }
+    
+        @include respond(tab-port) { // width < 900?
+            width: 65%; 
+        }
+
+        @include respond(phone) { // width < 900?
+            width: 85%; 
+        }
+        
+        @include respond(big-desktop) {
+            width: 45%; 
+        }
+
+        &__info {
+            margin-top: 5rem;
+            width: 90%;
+
+            display: flex;
+            justify-content: space-between;
+
+            font-size: 1.6rem;
+
+            &__link {
+                color: orange;
+                text-decoration: none;
+            }
+        }
+
+        &--link-back {
+            text-decoration: none;
+            color: orange;
+    
+            &:hover {
+                color: rgba(255, 166, 0, 0.692);
+            }
+        }
+    }
+
+    &--search-day {
+        @include flex(center, center);
+        flex-direction: column;
+
+        & > .btn--submit {
+            @include flex(center, center);
+            //padding: 2rem;
+        }
+    }
+
+
+    &__input {
+        height: 3.5rem;
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+        font-size: 1.6rem;
+        font-weight: 0;
+
+        &:first-child {
+            margin-top: 2.5rem;
+        }
+
+        &:focus {
+            border:1px solid rgba(255, 166, 0, 0.692);
+            outline: none;
+        }
+    }
+
+    &__textarea {
+        width: 100%;
+        display: block;
+        margin: 0 auto;
+        resize: none;
+    }
+
+    &__max-carach {
+        font-size: 1.4rem;
+    }
+
+    &__label {
+        font-size: 1.8rem;
+    }
+
+    &__date {
+        width: 50%;
+    }
+}
+
+.form--smaller {
+    width: 70%;
+}

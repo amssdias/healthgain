@@ -1,0 +1,112 @@
+.list-card {
+
+    border: 1rem solid rgba(255, 166, 0, 0.616);
+    width: 30%;
+    padding: 1.6rem;
+
+    margin-bottom: 3rem;
+
+    position: relative;
+
+    @include respond(tab-land) { // width < 1200?
+        width: 30%;
+    }
+
+    @include respond(tab-port) { // width < 900?
+        width: 35%;
+    }
+
+    @include respond(phone) { // width < 600?
+        width: 85%;
+    }
+
+    &__remove-food {
+        position: absolute;
+        top: -2rem;
+        right: -2rem;
+        font-size: 1rem;
+        background-color: rgba(255, 255, 255, 1);
+        border: 1px solid rgba(0, 0, 0, .1);
+        //box-shadow: .2rem .4rem 1rem .1rem rgba(0, 0, 0, .6);
+        padding: 1.6rem;
+        border-radius: 50%;
+        z-index: 11;
+        cursor: pointer;
+
+        &::before,
+        &::after {
+            content: "";
+            display: inline-block;
+            height: .1rem;
+            width: 1.6rem;
+            background-color: rgba(0, 0, 0, .7);
+            position: absolute;
+            left: 50%;
+            transform-origin: center;
+        }
+
+        &::before { transform: translateX(-50%) rotate(45deg);}
+        &::after {transform: translateX(-50%) rotate(-45deg);}
+    }
+
+
+    &__image {
+        width: 100%;
+        height: auto;
+
+        margin-bottom: 1rem;
+
+        @include respond(phone) { // width < 600?
+
+        }
+
+    }
+
+    &__nutrition-stats {
+
+        margin-top: 1rem;
+
+        &__info {
+            @include flex(space-between, center);
+            font-size: 1.6rem;
+
+            margin-bottom: .6rem;
+
+            &:last-child {
+                margin-bottom: 2rem;
+            }
+            
+        }
+
+    }
+
+    &__button {
+
+        //border:1px solid black;
+
+        display: inline-block;
+        font-size: 1.4rem;
+        font-weight: 600;
+        text-decoration: none;
+        color: white;
+        padding: .3rem .8rem;
+        border-radius: 40rem;
+        cursor: pointer;
+
+        transition: .2s;
+
+
+        &:hover {
+            box-shadow: .2rem .3rem .6rem rgba(0, 0, 0, .1);
+            transform: translateY(-.4rem);
+        }
+
+        &--add {
+            background-color: orange;
+        }
+
+        &--remove {
+            background-color: red;
+        }
+    }
+}

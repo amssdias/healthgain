@@ -1,0 +1,7 @@
+.update-profile{
+    @include sections(17rem 25rem,  #f8f8f8);
+
+    @include flex(center, center);
+    @include sections-media( #f8f8f8);
+
+}

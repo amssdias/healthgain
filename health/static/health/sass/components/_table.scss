@@ -1,0 +1,36 @@
+.table--intake {
+    margin: 0 auto;
+    width: 100%;
+    border-spacing: 0;
+
+    &__row {
+
+        &:first-child {
+            background-color: orange;
+        }
+
+        &:nth-child(even) {
+            background-color: white;
+        }
+
+        &:hover:not(:first-child) {
+            color: orange;
+        }
+
+        &__header {
+            font-size: 3rem;
+            padding: 1rem 0;
+        }
+
+        &__title {
+            font-size: 2.5rem;
+            padding: 1.5rem 1rem;
+        }
+
+        &__data {
+            font-size: 2.5rem;
+            text-align: center;
+        }
+
+    }
+}

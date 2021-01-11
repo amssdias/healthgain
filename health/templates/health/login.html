@@ -1,0 +1,54 @@
+{% extends 'health/layout.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class="main-login">
+
+        <div class="form-box">
+
+            <h1 class="heading-primary">Log in</h1>
+
+            <form action="{% url 'health:login' %}" method="POST" class="form">
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="Username" class="form__input">
+                <input type="password" name="password" placeholder="Password" class="form__input">
+                <input type="submit" class="btn--submit" value="Log in">
+            </form>
+
+            <div class="form-box__info">
+                <span>Not a member? <a href="{% url 'health:register' %}" class="form-box__info__link">Sign Up Now</a></span>
+                <!-- <a href="" class="form-box__info__link">Forgot Password?</a> -->
+            </div>
+            
+
+        </div>
+
+        {% if messages %}
+            {% for message in messages %}
+                <p class="flash-message">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
+        <h2 class="heading-secondary margin-bottom-large">
+            <a href="{% url 'health:main' %}" class="form-box--link-back">Go back to main page</a>
+        </h2>
+
+        <footer class="footer-small">
+            <h3 class="heading-tertiary footer__title">Connect with us</h3>
+
+            <div class="footer-small__connect">
+                <a href="#" class="footer-small__connect--logo"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="footer-small__connect--logo"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="footer-small__connect--logo"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="footer-small__connect--logo"><i class="fab fa-youtube"></i></a>
+                
+            </div>
+
+            <p class="footer-small__text">Copyright © by André Dias.</p>
+            
+        </footer>
+    </div>
+
+{% endblock %}

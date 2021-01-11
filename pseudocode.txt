@@ -1,0 +1,217 @@
+HealthGain Project
+
+Website where user can track what he have eated, (calories, protein ,etc). We will have a small part where we will display recipes, and maybe in the future a blog section where everyone can share their experience. 
+The user will be able to add his own food to a big list of foods, and then put some of the foods into his favourites. He will be able to add that specific food and the amount of grams he consumed, same as drinks.
+
+Models:
+    - X Users
+    - X Profile user (Name, age, weight, height, BMI, weight goal) - Many to many list of foods
+    - X Daily User dashboard food intake (user, food, grams, day) - User, Foreign Key
+    - X Food (name, brand, weight, calories, Total fat, Carbohydrate, Fibre, Protein, upload picture, date created, FOREIGN KEY USER)
+        (User foreign key, so we know all the ones he created, will be in his food list automatically, but can't be shown in others users)
+    - X Recipes (Name, summary, website, type(builk,  weight loss, healthy dessert), picture)
+
+Views: 
+    - register:
+        X Register a user, must type username, password, weight, height
+        X Check if passwords match
+        X Check if username already exists
+        X Check if email already exists
+        - Send a confirmation Email
+
+    X login:
+        X Once logged in, redirect to main logged page
+    
+    - forgot password
+
+    X logout:
+        X Logout and redirect to main page
+
+    - Main:
+        X Display HTML
+
+        IF LOGGED:
+            X Send information like weight goal and the last 2 days of food consumed by user
+            X Send user profile stats in case need to update
+
+    - Recipes / Diets:
+        X - Display HTML
+        X - Post for search bar
+
+    Logged in:
+
+        - Food dashboard:
+            - Form so user can add food from his favourites foods to his daily intakes
+            - Show amount of calories, protein, etc user already ingested
+            - Add flash message when user added food
+            - Refresh once form is submitted
+
+            - return flash message, amount of calories, protein etc from the current day
+
+        - create food:
+            - Show list of all foods from most recent on top
+            - Show form to add new food to the list:
+                - Can't have same name and brand of existed foods
+                - When user creates, automatically make it to his favourites
+            - Once user submit form, redirect to same page
+
+        - Menu (favourites):
+            - User list of favourite foods 
+
+    
+    API:
+
+        X Recipes; (to display on recipes)
+        X Profile User; (to update his stats)
+        - Daily user dashboard; (to know what user took in certains days);
+        - Food; (show food if user searches for it);
+
+
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+
+
+HTML:
+    (Not logged in)
+        Main page:
+           X - Navbar with links to recipes, about, register, login and Logo image
+           X - header
+           X - Small introduction
+           X - footer
+            - Calc BMI / calories to ingest
+
+        Recipes/Diets:
+            X - Button to login to see more
+            - Hide and show 3 common recipes, to bulk, to reduce weight, and some healthy dessert
+
+            (Logged in)
+            X - Search bar, to search for a specific recipe name
+            X - show 3 cards/buttons (bulk, reduce weith, healthy desserts)
+            X - once pressed one recipe, redirect to the website showing
+            - If press one card/button, hide everything and show a list of all recipes using respective API (max 20)
+
+        X - Register Page
+        X - Login Page
+
+    (Logged in)
+        User Page:
+           X - Nav bar with links to logout, recipes/diets, user profile, consumed food, add favourite food
+           X - header
+           X - Weight Goal, show how much is missing, current BMI
+           X - Show user last 2 days of daily intake specs and button to go to page to add new food 
+           X - footer
+        
+        (POP-UP box)
+        X User Profile:
+            X - Show user stats: Name, Email, Age, Height, Weight, BMI, Weight Goal, 
+            X - Button to update
+            X - Flash message "Profile updated"
+
+        X Update Profile
+
+        X Food list:
+            X - Small introduction explaining user must add food/drink to favourites, so he can start adding into his dashboard
+            X - Form to create new food/drink (automatically added to his favourites):
+                X - Food/drink name, Calories, Total Fat, Carbohydrate, Fibre, Protein (PER 100g/100ml)
+            X - 3 buttons/cards (my list, all foods, created), each showing maximum of 10/15 foods, paginator or javascript to load more:
+                X - Show user list of foods, manage to remove from his list;
+                X - Show listof all foods (including his owns) with a button to add to his favourites or remove from his favourites;
+                X - Show list of foods created by user,with a button to add to his list or remove, manage to delete;
+            X - Search bar to search for specific food/drink
+
+
+        Dashboard:
+            X - Small introduction explaining user we will show here what he ate, how much, and if he wants to create some new food, dont forget to add to his favourites
+            X - Display today's day
+            X - Show all food user ingested today and grams
+            X - Add message when user added food
+            - Show table with last 7 days
+
+            X - Search form to know what user ate(nutrition, and foods) in a certain day:
+                X - Show each food and g
+                X - Button to update
+                X - Show daily calories, protein, etc
+
+            (Pop-up box)
+            X - Form:
+                X - ask user what did he ate today(food or drink), and show list of his favourite foods/drinks
+                X - quantity (g or ml)
+
+            (POP-Up box)
+            - Button to create new food and automatically will be in his favourites
+
+
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+
+MEDIA QUERIES:
+    X Register Page
+    X Login Page
+    X pop-ups
+    X Index
+    X Index-logged
+    X Recipes
+    X Recipes-logged
+    X Dashboard
+    X Food list
+    X Profile update
+
+
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+
+JAVASCRIPT:
+    (Not logged in)
+        Recipes/Diets:
+            X - Javascript hide and show 3 common recipes, to bulk, to reduce weight, and some healthy dessert
+
+            (Logged in)
+            X - Search bar, to search for a specific recipe
+            X - show 3 cards/buttons (bulk, reduce weith, healthy desserts)
+            X - If press one card/button, hide everything and show a list of all recipes(name od recipe) using respective API (max 20)
+
+
+    (Logged in)
+        User Page:
+           X - Weight Goal, show how much is missing, current BMI
+        
+        (POP-UP box)
+        User Profile:
+            - Button to update, change everything, and when submit form update thru API
+
+        Food list:
+            - Small introduction explaining user must add food/drink to favourites, so he can start adding into his dashboard
+            - Form to create new food/drink (automatically added to his favourites):
+                - Food/drink name, Calories, Total Fat, Carbohydrate, Fibre, Protein (PER 100g/100ml)
+            - Show all foods (first 10/15), use paginator or javascript to load more
+            - Search bar for food/drink
+            - button to toggle to add and remove food from users favourites using AJAX
+
+        Dashboard:
+            X - Form:
+                X - ask user what did he ate today(food or drink), and show list of his favourite foods/drinks
+                X - Name of food/drink, quantity (g or ml)
+            - Add message when user added food
+            - Search form to know what user ate(nutrition, and foods) in a certain day:
+                - Show each food, g, calories etc
+
+            (POP-Up box)
+            - Button to create new food to his favourites
+
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+
+Don't forget:
+    - Models:
+        - Class Main_food => Food;
+        - Recipes model, category => (bulk, weight loss, healthy dessert);
+
+    - Recipes page logged:
+        - make it scroll top on pagination
+    
+    - function:
+        - to display todays nutrition (index and dashboard)
+
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+

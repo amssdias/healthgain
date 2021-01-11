@@ -1,0 +1,141 @@
+.header {
+
+    background-image: linear-gradient(
+        rgba(0,0,0,0.4) 10%, 
+        rgba(0,0,0,0) 20%),
+        url("../images/food_2.jpg");
+    
+    @include header;
+
+    @include respond(phone) { // width < 600?
+        background-position: center;
+    }
+
+    &__slogan {
+        color: white;
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-shadow: .5rem 1rem 2rem #ffffff;
+        
+        width: 100%;
+        text-align: center;
+        //background-color: rgba(255,255,255,.9);
+
+    
+        @include respond(tab-port) { // width < 900?
+            top: 20%;
+        }
+
+    }
+
+    &__link-recipes {
+        color: white;
+        text-decoration: none;
+        font-size: 3.2rem;
+        padding: 2rem;
+        background-color: #fdcb6e48;
+
+        position: absolute;
+        top: 50%;
+        left: 5%;
+
+        border: 2px solid #ffffff;
+        border-radius: 1rem;
+        transition: .2s;
+
+        &:hover {
+            transform: translateY(-.5rem);
+        }
+
+        @include respond(phone) { // width < 900?
+            background-color: #fdcb6ece;
+        }
+        
+    }
+
+    &__user-info {
+        background-color: rgba(255,255,255,.9);
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+
+        height: 30rem;
+
+        @include flex(space-around, center);
+        flex-direction: column;
+
+        &__text {
+            text-align: center;
+            font-weight: 800;
+            font-size: 3rem;
+            color: #f39c12;
+        }
+
+        &__number {
+            font-size: 10rem;
+        }
+    }
+
+    &__title {
+        background-color: rgba(255,255,255,.9);
+        padding: 5rem;
+        position: absolute;
+        left: 0;
+        right: 0;
+
+        font-size: 2.5rem;
+        letter-spacing: .3rem;
+        font-weight: 600;
+        text-align: center;
+        text-transform: uppercase;
+    }
+
+}
+
+.header--recipes {
+
+    background-image: linear-gradient(
+        rgba(0,0,0,0.4) 10%, 
+        rgba(0,0,0,0) 20%),
+        url("../images/food_4.jpg");
+        
+    background-position: 0% 50%;
+        
+    @include header;
+    @include flex(center, center);
+
+}
+
+.header--dashboard {
+
+    background-image: linear-gradient(
+        rgba(0,0,0,0.4) 10%, 
+        rgba(0,0,0,0) 20%),
+        url("../images/food_5.jpg");
+        
+    background-position: 0% 50%;
+        
+    @include header;
+    @include flex(center, center);
+
+}
+
+.header--food-list {
+    background-image: linear-gradient(
+        rgba(0,0,0,0.4) 10%, 
+        rgba(0,0,0,0) 20%),
+        url("../images/food_3.jpg");
+        
+    // background-position: 0% 50%;
+        
+    @include header;
+    @include flex(center, center);
+
+    @include respond(phone) { // width < 600?
+        background-position: center;
+    }
+}

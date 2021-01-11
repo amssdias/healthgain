@@ -1,0 +1,144 @@
+.recipes {
+    @include flex(center,center);
+    flex-direction: column;
+
+
+    &__cards {
+
+        @include sections(4rem 25rem, white);
+        @include flex(space-around,center);
+        width: 100%;
+
+        @include sections-media(white);
+
+        &__card {
+            border: 1px solid black;
+            padding: 5rem;
+            width: 30%;
+
+            text-align: center;
+            font-weight: 700;
+            cursor: pointer;
+
+            position: relative;
+
+            &__text {
+                display: block;
+                font-size: 2rem;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+
+                width: 100%;
+
+                transition: .3s;
+            }
+
+            &:hover .recipes__cards__card__text{
+
+                letter-spacing: .1rem;
+
+                background-image: $gradient-juicy-orange;
+                -webkit-background-clip: text;
+                color: transparent;
+            }
+        }
+    }
+
+    &__recipe {
+
+        &--info {
+            @include sections(0rem 25rem, white);
+            padding-bottom: 7rem;
+            animation-name: recipe;
+            animation-duration: 2s;
+            display: none;
+
+            @include respond(tab-land) { // width < 1200?
+                @include sections(0rem 15rem,  white);
+                padding-bottom: 7rem;
+            }
+        
+            @include respond(tab-port) { // width < 900?
+                @include sections(0rem 6rem,  white);
+                padding-bottom: 7rem;
+            }
+        
+            @include respond(phone) { // width < 600?
+                @include sections(0rem 4rem,  white); 
+                padding-bottom: 7rem;
+            }
+        }
+    }
+    
+    &__list {
+
+        @include sections(1rem 20rem, white);
+
+        @include sections-media(white);
+
+
+        &__item {
+
+            &:not(:last-child) {
+                border-bottom: 1px solid black;
+            }
+
+            padding: 5rem 0rem;
+
+            display: flex;
+            align-items: center;
+
+            animation-name: recipe;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+
+        
+            @include respond(phone) { // width < 600?
+                flex-direction: column;
+            }
+
+            &__img {
+                width: 20%;
+                height: 30rem;
+                object-fit: cover;
+                margin-right: 3rem;
+
+                @include respond(phone) { // width < 600?
+                    flex-direction: column;
+                    width: 80%;
+                }
+            }
+
+            &__info {
+                padding: 2rem;
+                @include flex(space-between, center);
+                flex-direction: column;
+            }
+        }
+
+        &__paginator {
+
+            text-align: center;
+
+            &__arrow {
+                font-size: 4rem;
+                color: orange;
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+                margin: 3rem 0rem;
+
+                &:not(:last-child) {
+                    margin-right: 3rem;
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+    }
+
+}

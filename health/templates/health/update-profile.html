@@ -1,0 +1,40 @@
+{% extends 'health/layout.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    {% include 'health/nav-bar.html' %}
+
+    <main class="update-profile">
+
+        <form class="form" action="{% url 'health:update_profile' %}" method="POST">
+            {% csrf_token %}
+
+            {% for field in form %}
+                
+                <label for="{{ field.id_for_label }}" class="form__label">{{ field.label }}</label>
+                {{ field }}
+            {% endfor %}
+
+            <input type="submit" value="Update" class="btn--submit margin-top-medium">
+        </form>
+    </main>
+
+
+    <footer class="footer-small">
+        <h3 class="heading-tertiary footer__title">Connect with us</h3>
+
+        <div class="footer-small__connect">
+            <a href="#" class="footer-small__connect--logo"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="footer-small__connect--logo"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="footer-small__connect--logo"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="footer-small__connect--logo"><i class="fab fa-youtube"></i></a>
+            
+        </div>
+
+        <p class="footer-small__text">Copyright © by André Dias.</p>
+        
+    </footer>
+
+{% endblock %}

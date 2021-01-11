@@ -1,0 +1,90 @@
+.footer {
+    padding: 7rem 25rem;
+    @include footer;
+
+    @include respond(tab-land) { // width < 1200?
+        @include sections(7rem 15rem,  #4f4e53);
+    }
+
+    @include respond(tab-port) { // width < 900?
+        @include sections(7rem 6rem,  #4f4e53);
+    }
+
+    @include respond(phone) { // width < 600?
+        @include sections(7rem 4rem,  #4f4e53); 
+    }
+
+    &__title {
+
+        &::before,
+        &::after {
+            content: "";
+            display: inline-block;
+            width: 2rem;
+            height: 2px;
+            background-color: white;
+            margin: 0rem 1rem;
+            margin-bottom: .6rem;
+        }
+    }
+
+    &__connect {
+        border-bottom: 1px solid white;
+        
+        @include footer-connect;
+        padding-bottom: 7rem;
+
+        &--logo {
+            font-size: 2.4rem;
+            width: 5rem;
+            height: 5rem;
+
+            @include footer-connect-logo;
+
+            &:not(:last-child) {
+                margin-right: 1.6rem;
+            }
+        }
+    }
+
+    &__text {
+        @include footer-text;
+        padding-bottom: 0;
+    }
+
+}
+
+.footer-small {
+    padding: 4rem 10rem;
+
+    @include footer;
+
+    @include flex(space-around, center);
+
+
+    @include respond(tab-port) { // width < 900?
+        @include flex(center, center);
+        flex-direction: column;
+    }
+    
+    
+    &__connect {
+        @include footer-connect;
+
+        &--logo {
+            font-size: 2rem;
+            width: 4.5rem;
+            height: 4.5rem;
+
+            @include footer-connect-logo;
+
+            &:not(:last-child) {
+                margin-right: 1.6rem;
+            }
+        }
+    }
+
+    &__text {
+        @include footer-text;
+    }
+}

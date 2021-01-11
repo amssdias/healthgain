@@ -1,0 +1,50 @@
+.features-cards {
+
+    flex-wrap: wrap;
+    @include flex(space-between, stretch);
+
+    @include respond(phone) { // width < 600?
+
+        @include flex(center, center);
+        flex-direction: column;
+
+    }
+    
+    &__card {
+
+        width: 33%;
+        text-align: center;
+        margin-bottom: 3rem;
+
+        @include respond(phone) { // width < 600?
+            width: 100%;
+        }
+
+        
+
+        &__image {
+            height: 15rem;
+
+            @include respond(tab-land) { // width < 1200?
+                height: 13rem;
+            }
+        
+            @include respond(tab-port) { // width < 900?
+                height: 10rem;
+            }
+
+            @include respond(phone) { // width < 600?
+                height: 15rem;
+            }
+            
+
+        }
+
+        &__text {
+            margin: 1.5rem 1rem;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+        }
+    }
+}

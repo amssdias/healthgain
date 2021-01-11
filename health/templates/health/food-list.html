@@ -1,0 +1,89 @@
+{% extends 'health/layout.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    {% include 'health/nav-bar.html' %}
+
+    <header class="header--food-list">
+        <div class="header__title">
+            Add to your favourites food list
+        </div>
+
+    </header>
+    {% include 'health/pop-up-profile.html' %}
+
+
+    <main class="food-list">
+
+        <p class="paragraph">Add some foods to your list, so you can update your dashboard with the food you want.</p>
+        <p class="paragraph">If you don't find the food you want, you can always create it.</p>
+
+        <div class="food-list__create-food margin-top-large">
+
+            <h2 class="heading-secondary">Create new food</h2>
+
+            <form action="{% url 'health:food_list' %}" method="POST" class="form" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                <label for="" class="form__label">Food or drink:</label>
+                <select name="category" id="" class="form__input" required>
+                    <option value="" disabled selected hidden></option>
+                    <option value="food">Fodd</option>
+                    <option value="drink">Drink</option>
+                </select>
+    
+                <label for="" class="form__label">Name:</label>
+                <input class="form__input" name="name" type="text" required>
+
+                <label for="" class="form__label">Brand:</label>
+                <input class="form__input" name="brand" type="text">
+    
+                <label for="" class="form__label">Calories (per 100g/ml):</label>
+                <input class="form__input" name="calories" type="number" required>
+    
+                <label for="" class="form__label">Total fat (per 100g/ml):</label>
+                <input class="form__input" name="total_fat" type="number" required>
+    
+                <label for="" class="form__label">Carbohydrate (per 100g/ml):</label>
+                <input class="form__input" name="carbs" type="number" required>
+    
+                <label for="" class="form__label">Fiber (per 100g/ml):</label>
+                <input class="form__input" name="fiber" type="number" required>
+    
+                <label for="" class="form__label">Protein (per 100g/ml):</label>
+                <input class="form__input" name="protein" type="number" required>
+    
+                <input type="submit" class="btn--submit margin-top-medium">
+            </form>
+        </div>
+
+        <div class="search-bar--box margin-top-large">
+            <form action="#" class="search-bar" id="search-food" data-userId="{{ request.user.profile.id }}">
+                <input type="text" class="search-bar__input" placeholder="Search for food or drink">
+                <button type="submit" class="search-bar__button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>
+        
+        <div class="food-list__toggle-box">
+            <button class="food-list__toggle-box__button food-list-button" data-list="myList" data-user="{{ request.user.profile.id }}">My list</button>
+            <button class="food-list__toggle-box__button food-list-button" data-list="allFoods" data-user="{{ request.user.profile.id }}">All foods</button>
+            <button class="food-list__toggle-box__button food-list-button" data-list="created" data-user="{{ request.user.profile.id }}">Created</button>
+        </div>
+
+
+        <div class="food-list__list" id="food-list">
+
+ 
+        </div>
+
+        
+    </main>
+
+    {% include 'health/footer.html' %}
+
+{% endblock %}

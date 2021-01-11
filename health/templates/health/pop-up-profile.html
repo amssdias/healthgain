@@ -1,0 +1,59 @@
+<!-- Profile user pop up -->
+<div class="pop-up__box" id="pop-up-profile">
+    <div class="pop-up" >
+
+        <div class="pop-up__header">
+            <h2 class="heading-secondary">{{ request.user.profile.user }}</h2>
+            <span class="pop-up__header--close pop-up-close" data-popup="pop-up-profile"></span>
+        </div>
+
+        <form action="" class="pop-up__form">
+
+            <div class="pop-up__form__info">
+                <h4 class="pop-up__title">First Name:</h4>
+                <span class="pop-up__stats">{{ request.user.profile.first_name }}</span>
+            </div>
+
+            <div class="pop-up__form__info">
+                <h4 class="pop-up__title">Last Name:</h4>
+                <span class="pop-up__stats">{{ request.user.profile.last_name }}</span>
+            </div>
+
+            <div class="pop-up__form__info">
+                <h4 class="pop-up__title">Age:</h4>
+                <span class="pop-up__stats">{{ request.user.profile.age }}</span>
+            </div>
+
+            <div class="pop-up__form__info">
+                <h4 class="pop-up__title">Height:</h4>
+                <span class="pop-up__stats">{{ request.user.profile.height | floatformat }}cm</span>
+            </div>
+
+            <div class="pop-up__form__info">
+                <h4 class="pop-up__title">Weight</h4>
+                <span class="pop-up__stats">{{ request.user.profile.weight | floatformat }} Kg</span>
+            </div>
+
+            <div class="pop-up__form__info">
+                <h4 class="pop-up__title">BMI (Body Mass Index):</h4>
+                <span class="pop-up__stats" id="profile-bmi" data-userid="{{ request.user.profile.id }}"></span>
+            </div>
+
+            <div class="pop-up__form__info">
+                <h4 class="pop-up__title">Weight Goal:</h4>
+                <span class="pop-up__stats">{{ request.user.profile.weight_goal }} Kg</span>
+            </div>
+            
+            <input type="submit" class="btn-submit display-hide">
+
+        </form>
+
+        <div class="pop-up__update">
+            <a href="{% url 'health:update_profile' %}" class="btn btn--juicy">Update Profile</a>
+
+        </div>
+        
+
+    </div>
+</div>
+

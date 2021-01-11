@@ -1,0 +1,127 @@
+[
+{
+    "model": "health.main_food",
+    "pk": 6,
+    "fields": {
+        "name": "Rice bazmati",
+        "brand": "Campo Largo",
+        "category": "food",
+        "weight": 100,
+        "calories": 348,
+        "total_fat": "0.80",
+        "carbs": "77.00",
+        "fiber": "0.00",
+        "protein": "7.20",
+        "salt": "0.00"
+    }
+},
+{
+    "model": "health.main_food",
+    "pk": 7,
+    "fields": {
+        "name": "Peanut butter",
+        "brand": "Captain America",
+        "category": "food",
+        "weight": 100,
+        "calories": 580,
+        "total_fat": "47.99",
+        "carbs": "17.16",
+        "fiber": "0.00",
+        "protein": "21.92",
+        "salt": "1.08"
+    }
+},
+{
+    "model": "health.main_food",
+    "pk": 8,
+    "fields": {
+        "name": "Oatmeal",
+        "brand": "Crownfield",
+        "category": "food",
+        "weight": 100,
+        "calories": 372,
+        "total_fat": "7.00",
+        "carbs": "58.70",
+        "fiber": "10.00",
+        "protein": "13.50",
+        "salt": "0.03"
+    }
+},
+{
+    "model": "health.main_food",
+    "pk": 9,
+    "fields": {
+        "name": "Milk",
+        "brand": "Milbona",
+        "category": "drink",
+        "weight": 100,
+        "calories": 63,
+        "total_fat": "3.60",
+        "carbs": "4.60",
+        "fiber": "0.00",
+        "protein": "3.10",
+        "salt": "0.13"
+    }
+},
+{
+    "model": "health.main_food",
+    "pk": 10,
+    "fields": {
+        "name": "Orange Juice",
+        "brand": "Don Simon",
+        "category": "drink",
+        "weight": 100,
+        "calories": 43,
+        "total_fat": "0.00",
+        "carbs": "10.00",
+        "fiber": "0.00",
+        "protein": "0.60",
+        "salt": "0.01"
+    }
+},
+{
+    "model": "health.profile_user",
+    "pk": 5,
+    "fields": {
+        "user": 6,
+        "email": "andre@hotmail.com",
+        "first_name": "Andr\u00e9",
+        "last_name": "Dias",
+        "weight": "65.00",
+        "height": "176.00",
+        "bmi": null,
+        "age": 27,
+        "weight_goal": 70
+    }
+},
+{
+    "model": "health.profile_user",
+    "pk": 6,
+    "fields": {
+        "user": 7,
+        "email": "elizeu@hotmail.com",
+        "first_name": "Elizeu",
+        "last_name": "Carlos",
+        "weight": "79.00",
+        "height": "179.00",
+        "bmi": null,
+        "age": 30,
+        "weight_goal": 83
+    }
+},
+{
+    "model": "health.profile_user",
+    "pk": 7,
+    "fields": {
+        "user": 8,
+        "email": "josue@hotmail.com",
+        "first_name": "Josue",
+        "last_name": "Carlos",
+        "weight": "90.00",
+        "height": "178.00",
+        "bmi": null,
+        "age": 28,
+        "weight_goal": 100
+    }
+}
+]

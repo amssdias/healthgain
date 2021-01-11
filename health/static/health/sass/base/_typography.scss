@@ -1,0 +1,40 @@
+.heading-primary {
+    font-size: 4rem;
+    text-align: center;
+}
+
+.heading-secondary {
+    font-size: 3rem;
+    text-align: center;
+}
+
+.heading-tertiary {
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.heading-forth {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.paragraph {
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+}
+
+.flash-message {
+    font-size: 2rem;
+    text-align: center;
+    width: 50%;
+    border: 1px solid transparent;
+
+    margin: 0rem auto;
+    padding: 1rem;
+
+    animation-name: border-flash;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    
+}
